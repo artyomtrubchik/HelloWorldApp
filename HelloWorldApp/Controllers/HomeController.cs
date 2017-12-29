@@ -36,6 +36,13 @@ namespace HelloWorldApp.Controllers
             return Json(contactRepository.GetAllContacts());
         }
 
+        [Route("getContactById")]
+        [HttpGet]
+        public ActionResult GetContactById(int id)
+        {
+            return Json(contactRepository.GetContactById(id));           
+        }
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
