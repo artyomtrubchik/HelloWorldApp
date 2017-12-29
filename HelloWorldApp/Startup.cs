@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using React.AspNet;
+using HelloWorldApp.Repository.Abstract;
+using HelloWorldApp.Repository.Concrete;
 
 namespace HelloWorldApp
 {
@@ -33,10 +35,12 @@ namespace HelloWorldApp
             services.AddReact();
             // Add framework services.
             services.AddMvc();
+            // Add custom services.
+            services.AddTransient<IContactRepository, ContactRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IContactRepository contactRepository)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();

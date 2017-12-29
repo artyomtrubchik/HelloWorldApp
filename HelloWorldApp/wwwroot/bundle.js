@@ -58,7 +58,7 @@
 	
 	var _mainComp2 = _interopRequireDefault(_mainComp);
 	
-	var _jquery = __webpack_require__(198);
+	var _jquery = __webpack_require__(197);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -21897,15 +21897,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _contactList = __webpack_require__(186);
+	var _contactList = __webpack_require__(185);
 	
 	var _contactList2 = _interopRequireDefault(_contactList);
 	
-	var _contact = __webpack_require__(197);
+	var _contact = __webpack_require__(196);
 	
 	var _contact2 = _interopRequireDefault(_contact);
 	
-	var _contactListActions = __webpack_require__(188);
+	var _contactListActions = __webpack_require__(187);
 	
 	var _contactListActions2 = _interopRequireDefault(_contactListActions);
 	
@@ -22002,8 +22002,7 @@
 	exports.default = MainComp;
 
 /***/ }),
-/* 185 */,
-/* 186 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22019,11 +22018,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _contactRow = __webpack_require__(187);
+	var _contactRow = __webpack_require__(186);
 	
 	var _contactRow2 = _interopRequireDefault(_contactRow);
 	
-	var _contactForm = __webpack_require__(196);
+	var _contactForm = __webpack_require__(193);
 	
 	var _contactForm2 = _interopRequireDefault(_contactForm);
 	
@@ -22031,7 +22030,7 @@
 	
 	var _ContactListStore2 = _interopRequireDefault(_ContactListStore);
 	
-	var _contactListActions = __webpack_require__(188);
+	var _contactListActions = __webpack_require__(187);
 	
 	var _contactListActions2 = _interopRequireDefault(_contactListActions);
 	
@@ -22148,7 +22147,7 @@
 	exports.default = ContactList;
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22164,7 +22163,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _contactListActions = __webpack_require__(188);
+	var _contactListActions = __webpack_require__(187);
 	
 	var _contactListActions2 = _interopRequireDefault(_contactListActions);
 	
@@ -22235,7 +22234,7 @@
 	exports.default = ContactRow;
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22244,11 +22243,11 @@
 	    value: true
 	});
 	
-	var _appDispatcher = __webpack_require__(189);
+	var _appDispatcher = __webpack_require__(188);
 	
 	var _appDispatcher2 = _interopRequireDefault(_appDispatcher);
 	
-	var _appConstants = __webpack_require__(192);
+	var _appConstants = __webpack_require__(191);
 	
 	var _appConstants2 = _interopRequireDefault(_appConstants);
 	
@@ -22297,7 +22296,7 @@
 	exports.default = ContactListActions;
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22306,12 +22305,12 @@
 	  value: true
 	});
 	
-	var _flux = __webpack_require__(190);
+	var _flux = __webpack_require__(189);
 	
 	exports.default = new _flux.Dispatcher();
 
 /***/ }),
-/* 190 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -22323,11 +22322,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(191);
+	module.exports.Dispatcher = __webpack_require__(190);
 
 
 /***/ }),
-/* 191 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -22564,7 +22563,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 192 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22573,7 +22572,7 @@
 	    value: true
 	});
 	
-	var _keymirror = __webpack_require__(193);
+	var _keymirror = __webpack_require__(192);
 	
 	var _keymirror2 = _interopRequireDefault(_keymirror);
 	
@@ -22597,7 +22596,7 @@
 	});
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, exports) {
 
 	/**
@@ -22656,6 +22655,143 @@
 
 
 /***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ContactForm = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(183);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ContactForm = exports.ContactForm = function (_React$Component) {
+	    _inherits(ContactForm, _React$Component);
+	
+	    function ContactForm(props) {
+	        _classCallCheck(this, ContactForm);
+	
+	        var _this = _possibleConstructorReturn(this, (ContactForm.__proto__ || Object.getPrototypeOf(ContactForm)).call(this, props));
+	
+	        _this.state = {
+	            firstName: '',
+	            lastName: '',
+	            gender: 'male',
+	            isBusinessContact: false
+	        };
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        _this.handleInputChange = _this.handleInputChange.bind(_this);
+	        return _this;
+	    }
+	
+	    _createClass(ContactForm, [{
+	        key: 'handleSubmit',
+	        value: function handleSubmit() {
+	            this.props.onSubmit(this.state);
+	        }
+	    }, {
+	        key: 'handleInputChange',
+	        value: function handleInputChange(event) {
+	            var target = event.target;
+	            var value = target.type === 'checkbox' ? target.checked : target.value;
+	            var name = target.name;
+	
+	            this.setState(_defineProperty({}, name, value));
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'tr',
+	                null,
+	                _react2.default.createElement(
+	                    'th',
+	                    { style: { width: '10%' } },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { type: 'submit',
+	                            className: 'btn btn-primary',
+	                            onClick: this.handleSubmit,
+	                            disabled: !this.state.firstName || !this.state.lastName },
+	                        'Submit'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'th',
+	                    { style: { width: '20%' } },
+	                    _react2.default.createElement('input', { className: 'form-control',
+	                        placeholder: 'Person\'s first name',
+	                        name: 'firstName',
+	                        onChange: this.handleInputChange })
+	                ),
+	                _react2.default.createElement(
+	                    'th',
+	                    { style: { width: '20%' } },
+	                    _react2.default.createElement('input', { className: 'form-control',
+	                        placeholder: 'Person\'s last name',
+	                        name: 'lastName',
+	                        onChange: this.handleInputChange })
+	                ),
+	                _react2.default.createElement(
+	                    'th',
+	                    { style: { width: '20%' } },
+	                    _react2.default.createElement(
+	                        'select',
+	                        { className: 'form-control',
+	                            name: 'gender',
+	                            onChange: this.handleInputChange },
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: 'male' },
+	                            'male'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: 'female' },
+	                            'female'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: 'other' },
+	                            'other'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'th',
+	                    { style: { width: '20%' } },
+	                    _react2.default.createElement('input', { type: 'checkbox',
+	                        className: 'form-check-input',
+	                        style: { margin: 'auto auto' },
+	                        name: 'isBusinessContact',
+	                        onChange: this.handleInputChange })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return ContactForm;
+	}(_react2.default.Component);
+	
+	exports.default = ContactForm;
+
+/***/ }),
 /* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22667,11 +22803,11 @@
 	
 	var _events = __webpack_require__(195);
 	
-	var _appDispatcher = __webpack_require__(189);
+	var _appDispatcher = __webpack_require__(188);
 	
 	var _appDispatcher2 = _interopRequireDefault(_appDispatcher);
 	
-	var _appConstants = __webpack_require__(192);
+	var _appConstants = __webpack_require__(191);
 	
 	var _appConstants2 = _interopRequireDefault(_appConstants);
 	
@@ -23073,143 +23209,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.ContactForm = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(183);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ContactForm = exports.ContactForm = function (_React$Component) {
-	    _inherits(ContactForm, _React$Component);
-	
-	    function ContactForm(props) {
-	        _classCallCheck(this, ContactForm);
-	
-	        var _this = _possibleConstructorReturn(this, (ContactForm.__proto__ || Object.getPrototypeOf(ContactForm)).call(this, props));
-	
-	        _this.state = {
-	            firstName: '',
-	            lastName: '',
-	            gender: 'male',
-	            isBusinessContact: false
-	        };
-	        _this.handleSubmit = _this.handleSubmit.bind(_this);
-	        _this.handleInputChange = _this.handleInputChange.bind(_this);
-	        return _this;
-	    }
-	
-	    _createClass(ContactForm, [{
-	        key: 'handleSubmit',
-	        value: function handleSubmit() {
-	            this.props.onSubmit(this.state);
-	        }
-	    }, {
-	        key: 'handleInputChange',
-	        value: function handleInputChange(event) {
-	            var target = event.target;
-	            var value = target.type === 'checkbox' ? target.checked : target.value;
-	            var name = target.name;
-	
-	            this.setState(_defineProperty({}, name, value));
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'tr',
-	                null,
-	                _react2.default.createElement(
-	                    'th',
-	                    { style: { width: '10%' } },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { type: 'submit',
-	                            className: 'btn btn-primary',
-	                            onClick: this.handleSubmit,
-	                            disabled: !this.state.firstName || !this.state.lastName },
-	                        'Submit'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'th',
-	                    { style: { width: '20%' } },
-	                    _react2.default.createElement('input', { className: 'form-control',
-	                        placeholder: 'Person\'s first name',
-	                        name: 'firstName',
-	                        onChange: this.handleInputChange })
-	                ),
-	                _react2.default.createElement(
-	                    'th',
-	                    { style: { width: '20%' } },
-	                    _react2.default.createElement('input', { className: 'form-control',
-	                        placeholder: 'Person\'s last name',
-	                        name: 'lastName',
-	                        onChange: this.handleInputChange })
-	                ),
-	                _react2.default.createElement(
-	                    'th',
-	                    { style: { width: '20%' } },
-	                    _react2.default.createElement(
-	                        'select',
-	                        { className: 'form-control',
-	                            name: 'gender',
-	                            onChange: this.handleInputChange },
-	                        _react2.default.createElement(
-	                            'option',
-	                            { value: 'male' },
-	                            'male'
-	                        ),
-	                        _react2.default.createElement(
-	                            'option',
-	                            { value: 'female' },
-	                            'female'
-	                        ),
-	                        _react2.default.createElement(
-	                            'option',
-	                            { value: 'other' },
-	                            'other'
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'th',
-	                    { style: { width: '20%' } },
-	                    _react2.default.createElement('input', { type: 'checkbox',
-	                        className: 'form-check-input',
-	                        style: { margin: 'auto auto' },
-	                        name: 'isBusinessContact',
-	                        onChange: this.handleInputChange })
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return ContactForm;
-	}(_react2.default.Component);
-	
-	exports.default = ContactForm;
-
-/***/ }),
-/* 197 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 	exports.Contact = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -23284,7 +23283,7 @@
 	exports.default = Contact;
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
