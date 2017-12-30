@@ -11,6 +11,12 @@ namespace HelloWorldApp.Controllers
     public class HomeController : Controller
     {
         private static IContactRepository contactRepository;
+
+        public HomeController()
+        {
+
+        }
+
         public HomeController(IContactRepository _contactRepository)
         {
             contactRepository = _contactRepository;
@@ -18,6 +24,7 @@ namespace HelloWorldApp.Controllers
 
         public ActionResult Index()
         {
+            ViewData["Message"] = "Hello world!";
             return View();
         }
 
