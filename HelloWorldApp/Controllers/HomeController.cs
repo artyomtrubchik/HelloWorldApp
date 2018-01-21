@@ -12,11 +12,6 @@ namespace HelloWorldApp.Controllers
     {
         private static IContactRepository contactRepository;
 
-        public HomeController()
-        {
-
-        }
-
         public HomeController(IContactRepository _contactRepository)
         {
             contactRepository = _contactRepository;

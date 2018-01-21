@@ -58,7 +58,7 @@
 	
 	var _mainComp2 = _interopRequireDefault(_mainComp);
 	
-	var _jquery = __webpack_require__(197);
+	var _jquery = __webpack_require__(199);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -21905,6 +21905,10 @@
 	
 	var _contact2 = _interopRequireDefault(_contact);
 	
+	var _pageHeader = __webpack_require__(197);
+	
+	var _pageHeader2 = _interopRequireDefault(_pageHeader);
+	
 	var _contactListActions = __webpack_require__(187);
 	
 	var _contactListActions2 = _interopRequireDefault(_contactListActions);
@@ -21938,6 +21942,7 @@
 	
 	        _this.state = getStateFromFlux();
 	        _this.handleBannerClick = _this.handleBannerClick.bind(_this);
+	        _this.handleSearchInput = _this.handleSearchInput.bind(_this);
 	        _this._onSelect = _this._onSelect.bind(_this);
 	        _this._onChange = _this._onChange.bind(_this);
 	        return _this;
@@ -21966,6 +21971,11 @@
 	            _contactListActions2.default.showList();
 	        }
 	    }, {
+	        key: 'handleSearchInput',
+	        value: function handleSearchInput(filter) {
+	            _contactListActions2.default.applyFilter(filter);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var style = {
@@ -21976,11 +21986,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'mainComp', style: style },
-	                _react2.default.createElement(
-	                    'h1',
-	                    { onClick: this.handleBannerClick },
-	                    'Contact list'
-	                ),
+	                _react2.default.createElement(_pageHeader2.default, { handleBannerClick: this.handleBannerClick, handleSearchInput: this.handleSearchInput }),
 	                this.state.hideContactList ? _react2.default.createElement(_contact2.default, null) : _react2.default.createElement(_contactList2.default, { data: this.state.contactList })
 	            );
 	        }
@@ -22084,9 +22090,13 @@
 	                return _react2.default.createElement(_contactRow2.default, { id: contact.id, firstName: contact.firstName, lastName: contact.lastName, gender: contact.gender, isBusinessContact: contact.isBusinessContact, key: contact.id });
 	            });
 	
+	            var style = {
+	                marginTop: '10px'
+	            };
+	
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'contactList' },
+	                { className: 'contactList', style: style },
 	                _react2.default.createElement(
 	                    'table',
 	                    { className: 'table' },
@@ -22266,6 +22276,18 @@
 	        }.bind(this);
 	        xhr.send();
 	    },
+	    loadSelectedContact: function loadSelectedContact(id) {
+	        var xhr = new XMLHttpRequest();
+	        xhr.open("get", "/GetContactById?id=" + id, true);
+	        xhr.onload = function () {
+	            var contact = JSON.parse(xhr.responseText);
+	            _appDispatcher2.default.dispatch({
+	                type: _appConstants2.default.CONTACT_LOADED,
+	                contact: contact
+	            });
+	        }.bind(this);
+	        xhr.send();
+	    },
 	    addContactToList: function addContactToList(contact) {
 	        $.ajax({
 	            type: "POST",
@@ -22278,6 +22300,12 @@
 	                    contacts: contacts
 	                });
 	            }
+	        });
+	    },
+	    applyFilter: function applyFilter(filter) {
+	        _appDispatcher2.default.dispatch({
+	            type: _appConstants2.default.SEARCH_INPUT_CHANGED,
+	            filter: filter
 	        });
 	    },
 	    selectContact: function selectContact(id) {
@@ -22585,14 +22613,8 @@
 	    CONTACT_LIST_LOAD_FAIL: null,
 	    CONTACT_LIST_UPDATE: null,
 	    CONTACT_SELECTED: null,
-	    TASK_LIST_CREATE_SUCCESS: null,
-	    TASK_LIST_CREATE_FAIL: null,
-	    TASKS_LOAD_SUCCESS: null,
-	    TASKS_LOAD_FAIL: null,
-	    TASK_UPDATE_SUCCESS: null,
-	    TASK_UPDATE_FAIL: null,
-	    TASK_CREATE_SUCCESS: null,
-	    TASK_CREATE_FAIL: null
+	    CONTACT_LOADED: null,
+	    SEARCH_INPUT_CHANGED: null
 	});
 
 /***/ }),
@@ -22815,26 +22837,44 @@
 	
 	var CHANGE_EVENT = 'change';
 	var SELECT_EVENT = 'select';
+	var CONTACT_LOADED_EVENT = 'contactLoaded';
+	
 	var _contactList = [];
+	var _filter = '';
+	var _selectedContactId = void 0;
+	var _selectedContact = void 0;
 	var _hideContactList = false;
 	
 	var ContactListStore = Object.assign({}, _events.EventEmitter.prototype, {
 	    getContactList: function getContactList() {
-	        return _contactList;
+	        return _contactList.filter(function (contact) {
+	            var match = false;
+	            for (var property in contact) {
+	                if (contact[property].toString().toLowerCase().includes(_filter)) {
+	                    match = true;
+	                    break;
+	                }
+	            }
+	            return match;
+	        });
 	    },
 	    isHidden: function isHidden() {
 	        return _hideContactList;
 	    },
 	    getSelectedContact: function getSelectedContact() {
-	        return _contactList.filter(function (contact) {
-	            return contact.selected;
-	        })[0];
+	        return _selectedContact;
+	    },
+	    getSelectedContactId: function getSelectedContactId() {
+	        return _selectedContactId;
 	    },
 	    emitChange: function emitChange() {
 	        this.emit(CHANGE_EVENT);
 	    },
 	    emitSelect: function emitSelect() {
 	        this.emit(SELECT_EVENT);
+	    },
+	    emitContactLoaded: function emitContactLoaded() {
+	        this.emit(CONTACT_LOADED_EVENT);
 	    },
 	    addChangeListener: function addChangeListener(callback) {
 	        this.on(CHANGE_EVENT, callback);
@@ -22847,6 +22887,12 @@
 	    },
 	    removeSelectListener: function removeSelectListener(callback) {
 	        this.removeListener(SELECT_EVENT, callback);
+	    },
+	    addContactLoadListener: function addContactLoadListener(callback) {
+	        this.on(CONTACT_LOADED_EVENT, callback);
+	    },
+	    removeContactLoadListener: function removeContactLoadListener(callback) {
+	        this.removeListener(CONTACT_LOADED_EVENT, callback);
 	    }
 	});
 	
@@ -22866,13 +22912,8 @@
 	            }
 	        case _appConstants2.default.CONTACT_SELECTED:
 	            {
-	                _contactList = _contactList.map(function (contact) {
-	                    contact.selected = false;
-	                    if (contact.id == action.id) {
-	                        contact.selected = true;
-	                    }
-	                    return contact;
-	                });
+	                _selectedContact = null;
+	                _selectedContactId = action.id;
 	                _hideContactList = true;
 	                ContactListStore.emitSelect();
 	                break;
@@ -22881,6 +22922,18 @@
 	            {
 	                _hideContactList = false;
 	                ContactListStore.emitSelect();
+	                break;
+	            }
+	        case _appConstants2.default.CONTACT_LOADED:
+	            {
+	                _selectedContact = action.contact;
+	                ContactListStore.emitContactLoaded();
+	                break;
+	            }
+	        case _appConstants2.default.SEARCH_INPUT_CHANGED:
+	            {
+	                _filter = action.filter.toLowerCase();
+	                ContactListStore.emitChange();
 	                break;
 	            }
 	        default:
@@ -23221,6 +23274,10 @@
 	
 	var _ContactListStore2 = _interopRequireDefault(_ContactListStore);
 	
+	var _contactListActions = __webpack_require__(187);
+	
+	var _contactListActions2 = _interopRequireDefault(_contactListActions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23245,13 +23302,30 @@
 	
 	        _this.state = getStateFromFlux();
 	        _this.getProfilePicture = _this.getProfilePicture.bind(_this);
+	        _this._onContactLoad = _this._onContactLoad.bind(_this);
 	        return _this;
 	    }
 	
 	    _createClass(Contact, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            _contactListActions2.default.loadSelectedContact(_ContactListStore2.default.getSelectedContactId());
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            _ContactListStore2.default.addContactLoadListener(this._onContactLoad);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _ContactListStore2.default.removeContactLoadListener(this._onContactLoad);
+	            this.setState({});
+	        }
+	    }, {
 	        key: 'getProfilePicture',
 	        value: function getProfilePicture() {
-	            if (this.state.contact.profilePicture) return this.state.contact.profilePicture;
+	            if (this.state.contact && this.state.contact.profilePicture) return this.state.contact.profilePicture;
 	            return "/profilePictures/default.jpg";
 	        }
 	    }, {
@@ -23263,17 +23337,26 @@
 	                overflow: "hidden"
 	            };
 	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement('img', { style: pictureStyle, className: 'img-thumbnail', src: this.getProfilePicture() }),
-	                _react2.default.createElement(
+	            if (this.state.contact) {
+	                return _react2.default.createElement(
 	                    'div',
 	                    null,
-	                    'I\'m a contact! My Id is ',
-	                    this.state.contact.id
-	                )
-	            );
+	                    _react2.default.createElement('img', { style: pictureStyle, className: 'img-thumbnail', src: this.getProfilePicture() }),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        'I\'m a contact! My Id is ',
+	                        this.state.contact.id
+	                    )
+	                );
+	            } else {
+	                return _react2.default.createElement('div', null);
+	            }
+	        }
+	    }, {
+	        key: '_onContactLoad',
+	        value: function _onContactLoad() {
+	            this.setState(getStateFromFlux());
 	        }
 	    }]);
 	
@@ -23284,6 +23367,82 @@
 
 /***/ }),
 /* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+				value: true
+	});
+	
+	var _react = __webpack_require__(183);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _filterRow = __webpack_require__(198);
+	
+	var _filterRow2 = _interopRequireDefault(_filterRow);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var PageHeader = function PageHeader(_ref) {
+				var handleBannerClick = _ref.handleBannerClick,
+				    handleSearchInput = _ref.handleSearchInput;
+	
+				return _react2.default.createElement(
+							'div',
+							{ className: 'pageHeader', style: { display: 'inline-block' } },
+							_react2.default.createElement(
+										'div',
+										null,
+										_react2.default.createElement(
+													'h1',
+													{ onClick: handleBannerClick },
+													'Contact list app'
+										)
+							),
+							_react2.default.createElement(_filterRow2.default, { handleSearchInput: handleSearchInput })
+				);
+	};
+	
+	exports.default = PageHeader;
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(183);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var FilterRow = function FilterRow(_ref) {
+		var handleSearchInput = _ref.handleSearchInput;
+	
+		var handleInputChange = function handleInputChange(event) {
+			handleSearchInput(event.target.value);
+		};
+	
+		return _react2.default.createElement(
+			"div",
+			null,
+			"Search:",
+			_react2.default.createElement("input", { className: "form-control",
+				onChange: handleInputChange })
+		);
+	};
+	
+	exports.default = FilterRow;
+
+/***/ }),
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!

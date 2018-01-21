@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import ContactList from './contactList';
 import Contact from './contact';
+import PageHeader from './pageHeader';
 import ContactListActions from '../actions/contactListActions';
 import ContactListStore from '../stores/ContactListStore';
 
@@ -17,6 +18,7 @@ export class MainComp extends React.Component {
         super(props);        
         this.state = getStateFromFlux();   
         this.handleBannerClick = this.handleBannerClick.bind(this);
+		this.handleSearchInput = this.handleSearchInput.bind(this);		
         this._onSelect = this._onSelect.bind(this);     
         this._onChange = this._onChange.bind(this);      
     }      
@@ -38,6 +40,10 @@ export class MainComp extends React.Component {
     handleBannerClick() {
         ContactListActions.showList();
     }
+
+	handleSearchInput(filter) {		
+        ContactListActions.applyFilter(filter);
+    }
     
     render() {
         const style = {
@@ -46,8 +52,8 @@ export class MainComp extends React.Component {
         }
 
         return (
-            <div className="mainComp" style={style}>            
-                <h1 onClick={this.handleBannerClick}>Contact list</h1>
+            <div className="mainComp" style={style}>
+			<PageHeader handleBannerClick={this.handleBannerClick} handleSearchInput={this.handleSearchInput}></PageHeader>       
                 {
                     this.state.hideContactList ? <Contact></Contact> : <ContactList data={this.state.contactList}></ContactList>
                 }

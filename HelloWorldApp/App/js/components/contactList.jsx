@@ -4,6 +4,7 @@ import ContactForm from './contactForm';
 import ContactListStore from '../stores/ContactListStore';
 import ContactListActions from '../actions/contactListActions';
 
+
 function getStateFromFlux() {
     return {
         contactList: ContactListStore.getContactList()
@@ -29,14 +30,20 @@ export class ContactList extends React.Component{
     handleContactSubmit(contact) {
         ContactListActions.addContactToList(contact);
     }   
-    
+	   
+
     render() {
         var contactRows = this.props.data.map(contact =>
             <ContactRow id={contact.id} firstName={contact.firstName} lastName={contact.lastName} gender={contact.gender} isBusinessContact={contact.isBusinessContact} key={contact.id}>                
-        </ContactRow>)          
+        </ContactRow>)    
+		
+		const style = {
+            marginTop: '10px'
+        }
+
 
         return (            
-            <div className="contactList">
+            <div className="contactList" style={style}>
                 <table className="table">
                     <thead>
                         <tr>
@@ -48,7 +55,7 @@ export class ContactList extends React.Component{
                         </tr>                       
                     </thead>
                     <tbody>
-                        <ContactForm onSubmit={this.handleContactSubmit}></ContactForm>
+                        <ContactForm onSubmit={this.handleContactSubmit}></ContactForm>						
                         {contactRows}
                     </tbody>                 
                 </table>

@@ -15,6 +15,19 @@ const ContactListActions = {
         xhr.send();
     },
 
+    loadSelectedContact(id){
+        var xhr = new XMLHttpRequest();
+        xhr.open("get" , "/GetContactById?id=" + id, true);
+        xhr.onload = function(){
+            var contact = JSON.parse(xhr.responseText);
+            AppDispatcher.dispatch({
+                type: AppConstants.CONTACT_LOADED,
+                contact: contact
+            })            
+        }.bind(this);
+        xhr.send();
+    },
+
     addContactToList(contact){    
         $.ajax({
             type: "POST",
@@ -29,6 +42,14 @@ const ContactListActions = {
             }          
         });
     },
+
+    applyFilter(filter){
+        AppDispatcher.dispatch({
+            type: AppConstants.SEARCH_INPUT_CHANGED,
+            filter: filter
+        })
+    },
+
     selectContact(id) {
         AppDispatcher.dispatch({
             type: AppConstants.CONTACT_SELECTED,

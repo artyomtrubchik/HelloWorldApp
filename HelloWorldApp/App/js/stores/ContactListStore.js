@@ -5,24 +5,47 @@ import AppConstants from '../constants/appConstants'
 
 const CHANGE_EVENT = 'change';
 const SELECT_EVENT = 'select';
+const CONTACT_LOADED_EVENT = 'contactLoaded';
+
+
 let _contactList = [];
+let _filter = '';
+let _selectedContactId;
+let _selectedContact;
 let _hideContactList = false;
 
 const ContactListStore = Object.assign({}, EventEmitter.prototype, {
-    getContactList(){
-        return _contactList;
+    getContactList(){        
+        return _contactList.filter(contact => 
+        {
+            let match = false;
+            for (var property in contact) {
+                if(contact[property].toString().toLowerCase().includes(_filter)) {
+                    match = true;
+                    break;
+                }
+            }
+            return match;
+        }
+      );
     },
     isHidden() {
         return _hideContactList;
     },
     getSelectedContact() {
-        return _contactList.filter((contact) => contact.selected)[0];
+        return _selectedContact;
+    },
+    getSelectedContactId() {
+        return _selectedContactId;
     },
     emitChange(){
         this.emit(CHANGE_EVENT);
     },
     emitSelect() {
         this.emit(SELECT_EVENT);
+    },
+    emitContactLoaded() {
+        this.emit(CONTACT_LOADED_EVENT);
     },
     addChangeListener(callback){
         this.on(CHANGE_EVENT, callback);
@@ -35,6 +58,12 @@ const ContactListStore = Object.assign({}, EventEmitter.prototype, {
     },
     removeSelectListener(callback) {
         this.removeListener(SELECT_EVENT, callback);
+    },
+    addContactLoadListener(callback) {
+         this.on(CONTACT_LOADED_EVENT, callback);
+    },
+    removeContactLoadListener(callback) {
+        this.removeListener(CONTACT_LOADED_EVENT, callback);
     }
 })
 
@@ -51,14 +80,9 @@ AppDispatcher.register(function(action){
             ContactListStore.emitChange();
             break;
         }
-        case AppConstants.CONTACT_SELECTED: {            
-            _contactList = _contactList.map((contact) => {
-                contact.selected = false;
-                if (contact.id == action.id) {
-                    contact.selected = true;
-                }
-                return contact;
-            });
+        case AppConstants.CONTACT_SELECTED: { 
+            _selectedContact = null;
+            _selectedContactId = action.id;
             _hideContactList = true;
             ContactListStore.emitSelect();
             break;
@@ -66,6 +90,16 @@ AppDispatcher.register(function(action){
         case AppConstants.SHOW_LIST: {
             _hideContactList = false;
             ContactListStore.emitSelect();
+            break;
+        }
+        case AppConstants.CONTACT_LOADED:{
+            _selectedContact = action.contact;
+            ContactListStore.emitContactLoaded();
+            break;
+        }
+        case AppConstants.SEARCH_INPUT_CHANGED:{
+            _filter = action.filter.toLowerCase();
+            ContactListStore.emitChange();
             break;
         }
         default:{
