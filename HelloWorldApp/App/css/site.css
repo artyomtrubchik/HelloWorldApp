@@ -35,3 +35,9 @@ textarea {
         display: none;
     }
 }
+
+
+.mainComp {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+}

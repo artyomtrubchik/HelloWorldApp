@@ -4,6 +4,7 @@ import Contact from './contact';
 import PageHeader from './pageHeader';
 import ContactListActions from '../actions/contactListActions';
 import ContactListStore from '../stores/ContactListStore';
+import FilterRow from './filterRow';
 
 
 function getStateFromFlux() {
@@ -53,7 +54,10 @@ export class MainComp extends React.Component {
 
         return (
             <div className="mainComp" style={style}>
-			<PageHeader handleBannerClick={this.handleBannerClick} handleSearchInput={this.handleSearchInput}></PageHeader>       
+                <div>
+                        <h1 onClick={this.handleBannerClick}>Contact list app</h1>
+                </div>			 
+                <FilterRow handleSearchInput={this.handleSearchInput} ></FilterRow>		     
                 {
                     this.state.hideContactList ? <Contact></Contact> : <ContactList data={this.state.contactList}></ContactList>
                 }
