@@ -53,14 +53,16 @@ export class MainComp extends React.Component {
         }
 
         return (
-            <div className="mainComp" style={style}>
-                <div>
+            <div className="main-comp" style={style}>
+                <div className="banner">
                         <h1 onClick={this.handleBannerClick}>Contact list app</h1>
                 </div>			 
-                <FilterRow handleSearchInput={this.handleSearchInput} ></FilterRow>		     
-                {
-                    this.state.hideContactList ? <Contact></Contact> : <ContactList data={this.state.contactList}></ContactList>
-                }
+                <FilterRow handleSearchInput={this.handleSearchInput} ></FilterRow>	    
+                <div className="content">
+                    {
+                        this.state.hideContactList ? <Contact></Contact> : <ContactList data={this.state.contactList}></ContactList>
+                    }                    
+                </div>                                 
              </div>
         );
     }

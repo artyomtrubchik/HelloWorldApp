@@ -1,6 +1,7 @@
 ﻿//var nodeExternals = require('webpack-node-externals');
 var path = require('path');
 
+
 module.exports = {
     entry: './App/js/site.jsx', // входная точка - исходный файл
     output: {
@@ -14,7 +15,7 @@ module.exports = {
         extensions: ['.js', '.jsx'] // расширения для загрузки модулей
     },   
     module: {
-        rules: [
+        rules: [          
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
@@ -28,5 +29,5 @@ module.exports = {
                 }
             }
         ]
-    }
+    }   
 }

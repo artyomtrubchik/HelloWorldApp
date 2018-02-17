@@ -9839,7 +9839,7 @@ const FilterRow = ({ handleSearchInput }) => {
 
 	return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 		"div",
-		null,
+		{ className: "filter-row" },
 		"Search:",
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "form-control",
 			onChange: handleInputChange })
@@ -22484,10 +22484,10 @@ class MainComp extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'mainComp', style: style },
+            { className: 'main-comp', style: style },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                null,
+                { className: 'banner' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h1',
                     { onClick: this.handleBannerClick },
@@ -22495,7 +22495,11 @@ class MainComp extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__filterRow__["a" /* default */], { handleSearchInput: this.handleSearchInput }),
-            this.state.hideContactList ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__contact__["a" /* default */], null) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__contactList__["a" /* default */], { data: this.state.contactList })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'content' },
+                this.state.hideContactList ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__contact__["a" /* default */], null) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__contactList__["a" /* default */], { data: this.state.contactList })
+            )
         );
     }
 

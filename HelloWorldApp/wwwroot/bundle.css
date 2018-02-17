@@ -1,4 +1,4 @@
-﻿.main-comp {
+.main-comp {
     display: grid;
     grid-template-columns: 300px auto 200px;
 }

@@ -7,8 +7,8 @@ const FilterRow = ({handleSearchInput}) => {
 		 handleSearchInput(event.target.value);
 	};
 
-	return(			
-			<div>
+    return (
+        <div className="filter-row">
 			Search: 
 				<input className="form-control"                   
                     onChange={handleInputChange}/>
