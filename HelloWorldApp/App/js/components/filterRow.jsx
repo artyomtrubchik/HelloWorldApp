@@ -9,10 +9,12 @@ const FilterRow = ({handleSearchInput}) => {
 
     return (
         <div className="filter-row">
-			Search: 
-				<input className="form-control"                   
-                    onChange={handleInputChange}/>
-			</div>						 	
+            <div>
+                Search:
+				<input className="form-control"
+                    onChange={handleInputChange} />
+            </div>			
+		</div>						 	
 	)
 	
 }

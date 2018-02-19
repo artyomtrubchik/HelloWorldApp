@@ -9840,9 +9840,13 @@ const FilterRow = ({ handleSearchInput }) => {
 	return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 		"div",
 		{ className: "filter-row" },
-		"Search:",
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "form-control",
-			onChange: handleInputChange })
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			"div",
+			null,
+			"Search:",
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "form-control",
+				onChange: handleInputChange })
+		)
 	);
 };
 
